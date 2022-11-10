@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.button_create = new System.Windows.Forms.Button();
-            this.button_nods = new System.Windows.Forms.Button();
+            this.button_nons = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.num_nulls = new System.Windows.Forms.NumericUpDown();
             this.button_ok = new System.Windows.Forms.Button();
@@ -40,39 +40,39 @@
             this.check_ex_3 = new System.Windows.Forms.CheckBox();
             this.check_ex_4 = new System.Windows.Forms.CheckBox();
             this.check_ex_5 = new System.Windows.Forms.CheckBox();
-            this.check_nod_5 = new System.Windows.Forms.CheckBox();
-            this.check_nod_4 = new System.Windows.Forms.CheckBox();
-            this.check_nod_3 = new System.Windows.Forms.CheckBox();
-            this.check_nod_2 = new System.Windows.Forms.CheckBox();
-            this.check_nod_1 = new System.Windows.Forms.CheckBox();
+            this.check_non_4 = new System.Windows.Forms.CheckBox();
+            this.check_non_3 = new System.Windows.Forms.CheckBox();
+            this.check_non_2 = new System.Windows.Forms.CheckBox();
+            this.check_non_1 = new System.Windows.Forms.CheckBox();
             this.check_chain_5 = new System.Windows.Forms.CheckBox();
             this.check_chain_4 = new System.Windows.Forms.CheckBox();
             this.check_chain_3 = new System.Windows.Forms.CheckBox();
             this.check_chain_2 = new System.Windows.Forms.CheckBox();
             this.check_chain_1 = new System.Windows.Forms.CheckBox();
             this.button_delete_chain = new System.Windows.Forms.Button();
+            this.check_non_5 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.num_nulls)).BeginInit();
             this.SuspendLayout();
             // 
             // button_create
             // 
-            this.button_create.Location = new System.Drawing.Point(26, 27);
+            this.button_create.Location = new System.Drawing.Point(26, 23);
             this.button_create.Name = "button_create";
-            this.button_create.Size = new System.Drawing.Size(221, 23);
+            this.button_create.Size = new System.Drawing.Size(221, 27);
             this.button_create.TabIndex = 0;
             this.button_create.Text = "Создать исходные файлы";
             this.button_create.UseVisualStyleBackColor = true;
             this.button_create.Click += new System.EventHandler(this.button_create_Click);
             // 
-            // button_nods
+            // button_nons
             // 
-            this.button_nods.Location = new System.Drawing.Point(26, 156);
-            this.button_nods.Name = "button_nods";
-            this.button_nods.Size = new System.Drawing.Size(221, 23);
-            this.button_nods.TabIndex = 1;
-            this.button_nods.Text = "Определить нодсы";
-            this.button_nods.UseVisualStyleBackColor = true;
-            this.button_nods.Click += new System.EventHandler(this.button_nods_Click);
+            this.button_nons.Location = new System.Drawing.Point(26, 153);
+            this.button_nons.Name = "button_nons";
+            this.button_nons.Size = new System.Drawing.Size(221, 26);
+            this.button_nons.TabIndex = 1;
+            this.button_nons.Text = "Определить нонсы";
+            this.button_nons.UseVisualStyleBackColor = true;
+            this.button_nons.Click += new System.EventHandler(this.button_nons_Click);
             // 
             // label1
             // 
@@ -102,9 +102,9 @@
             // 
             // button_check_chain
             // 
-            this.button_check_chain.Location = new System.Drawing.Point(26, 215);
+            this.button_check_chain.Location = new System.Drawing.Point(26, 221);
             this.button_check_chain.Name = "button_check_chain";
-            this.button_check_chain.Size = new System.Drawing.Size(221, 51);
+            this.button_check_chain.Size = new System.Drawing.Size(221, 45);
             this.button_check_chain.TabIndex = 16;
             this.button_check_chain.Text = "Проверить целостность цепочки";
             this.button_check_chain.UseVisualStyleBackColor = true;
@@ -175,60 +175,49 @@
             this.check_ex_5.Text = "5";
             this.check_ex_5.UseVisualStyleBackColor = true;
             // 
-            // check_nod_5
+            // check_non_4
             // 
-            this.check_nod_5.AutoSize = true;
-            this.check_nod_5.Enabled = false;
-            this.check_nod_5.Location = new System.Drawing.Point(199, 185);
-            this.check_nod_5.Name = "check_nod_5";
-            this.check_nod_5.Size = new System.Drawing.Size(36, 20);
-            this.check_nod_5.TabIndex = 32;
-            this.check_nod_5.Text = "5";
-            this.check_nod_5.UseVisualStyleBackColor = true;
+            this.check_non_4.AutoSize = true;
+            this.check_non_4.Enabled = false;
+            this.check_non_4.Location = new System.Drawing.Point(158, 185);
+            this.check_non_4.Name = "check_non_4";
+            this.check_non_4.Size = new System.Drawing.Size(36, 20);
+            this.check_non_4.TabIndex = 31;
+            this.check_non_4.Text = "4";
+            this.check_non_4.UseVisualStyleBackColor = true;
             // 
-            // check_nod_4
+            // check_non_3
             // 
-            this.check_nod_4.AutoSize = true;
-            this.check_nod_4.Enabled = false;
-            this.check_nod_4.Location = new System.Drawing.Point(158, 185);
-            this.check_nod_4.Name = "check_nod_4";
-            this.check_nod_4.Size = new System.Drawing.Size(36, 20);
-            this.check_nod_4.TabIndex = 31;
-            this.check_nod_4.Text = "4";
-            this.check_nod_4.UseVisualStyleBackColor = true;
+            this.check_non_3.AutoSize = true;
+            this.check_non_3.Enabled = false;
+            this.check_non_3.Location = new System.Drawing.Point(117, 185);
+            this.check_non_3.Name = "check_non_3";
+            this.check_non_3.Size = new System.Drawing.Size(36, 20);
+            this.check_non_3.TabIndex = 30;
+            this.check_non_3.Text = "3";
+            this.check_non_3.UseVisualStyleBackColor = true;
             // 
-            // check_nod_3
+            // check_non_2
             // 
-            this.check_nod_3.AutoSize = true;
-            this.check_nod_3.Enabled = false;
-            this.check_nod_3.Location = new System.Drawing.Point(117, 185);
-            this.check_nod_3.Name = "check_nod_3";
-            this.check_nod_3.Size = new System.Drawing.Size(36, 20);
-            this.check_nod_3.TabIndex = 30;
-            this.check_nod_3.Text = "3";
-            this.check_nod_3.UseVisualStyleBackColor = true;
+            this.check_non_2.AutoSize = true;
+            this.check_non_2.Enabled = false;
+            this.check_non_2.Location = new System.Drawing.Point(76, 185);
+            this.check_non_2.Name = "check_non_2";
+            this.check_non_2.Size = new System.Drawing.Size(36, 20);
+            this.check_non_2.TabIndex = 29;
+            this.check_non_2.Text = "2";
+            this.check_non_2.UseVisualStyleBackColor = true;
             // 
-            // check_nod_2
+            // check_non_1
             // 
-            this.check_nod_2.AutoSize = true;
-            this.check_nod_2.Enabled = false;
-            this.check_nod_2.Location = new System.Drawing.Point(76, 185);
-            this.check_nod_2.Name = "check_nod_2";
-            this.check_nod_2.Size = new System.Drawing.Size(36, 20);
-            this.check_nod_2.TabIndex = 29;
-            this.check_nod_2.Text = "2";
-            this.check_nod_2.UseVisualStyleBackColor = true;
-            // 
-            // check_nod_1
-            // 
-            this.check_nod_1.AutoSize = true;
-            this.check_nod_1.Enabled = false;
-            this.check_nod_1.Location = new System.Drawing.Point(37, 185);
-            this.check_nod_1.Name = "check_nod_1";
-            this.check_nod_1.Size = new System.Drawing.Size(36, 20);
-            this.check_nod_1.TabIndex = 28;
-            this.check_nod_1.Text = "1";
-            this.check_nod_1.UseVisualStyleBackColor = true;
+            this.check_non_1.AutoSize = true;
+            this.check_non_1.Enabled = false;
+            this.check_non_1.Location = new System.Drawing.Point(37, 185);
+            this.check_non_1.Name = "check_non_1";
+            this.check_non_1.Size = new System.Drawing.Size(36, 20);
+            this.check_non_1.TabIndex = 28;
+            this.check_non_1.Text = "1";
+            this.check_non_1.UseVisualStyleBackColor = true;
             // 
             // check_chain_5
             // 
@@ -296,21 +285,32 @@
             this.button_delete_chain.UseVisualStyleBackColor = true;
             this.button_delete_chain.Click += new System.EventHandler(this.button_delete_chain_Click);
             // 
+            // check_non_5
+            // 
+            this.check_non_5.AutoSize = true;
+            this.check_non_5.Enabled = false;
+            this.check_non_5.Location = new System.Drawing.Point(199, 185);
+            this.check_non_5.Name = "check_non_5";
+            this.check_non_5.Size = new System.Drawing.Size(36, 20);
+            this.check_non_5.TabIndex = 39;
+            this.check_non_5.Text = "5";
+            this.check_non_5.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(273, 389);
+            this.Controls.Add(this.check_non_5);
             this.Controls.Add(this.button_delete_chain);
             this.Controls.Add(this.check_chain_5);
             this.Controls.Add(this.check_chain_4);
             this.Controls.Add(this.check_chain_3);
             this.Controls.Add(this.check_chain_2);
-            this.Controls.Add(this.check_nod_5);
-            this.Controls.Add(this.check_nod_4);
-            this.Controls.Add(this.check_nod_3);
-            this.Controls.Add(this.check_nod_2);
-            this.Controls.Add(this.check_nod_1);
+            this.Controls.Add(this.check_non_4);
+            this.Controls.Add(this.check_non_3);
+            this.Controls.Add(this.check_non_2);
+            this.Controls.Add(this.check_non_1);
             this.Controls.Add(this.check_ex_5);
             this.Controls.Add(this.check_ex_4);
             this.Controls.Add(this.check_ex_3);
@@ -321,7 +321,7 @@
             this.Controls.Add(this.button_ok);
             this.Controls.Add(this.num_nulls);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button_nods);
+            this.Controls.Add(this.button_nons);
             this.Controls.Add(this.button_create);
             this.Controls.Add(this.check_chain_1);
             this.Name = "Form1";
@@ -335,7 +335,7 @@
         #endregion
 
         private System.Windows.Forms.Button button_create;
-        private System.Windows.Forms.Button button_nods;
+        private System.Windows.Forms.Button button_nons;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown num_nulls;
         private System.Windows.Forms.Button button_ok;
@@ -346,17 +346,17 @@
         private System.Windows.Forms.CheckBox check_ex_3;
         private System.Windows.Forms.CheckBox check_ex_4;
         private System.Windows.Forms.CheckBox check_ex_5;
-        private System.Windows.Forms.CheckBox check_nod_5;
-        private System.Windows.Forms.CheckBox check_nod_4;
-        private System.Windows.Forms.CheckBox check_nod_3;
-        private System.Windows.Forms.CheckBox check_nod_2;
-        private System.Windows.Forms.CheckBox check_nod_1;
+        private System.Windows.Forms.CheckBox check_non_4;
+        private System.Windows.Forms.CheckBox check_non_3;
+        private System.Windows.Forms.CheckBox check_non_2;
+        private System.Windows.Forms.CheckBox check_non_1;
         private System.Windows.Forms.CheckBox check_chain_5;
         private System.Windows.Forms.CheckBox check_chain_4;
         private System.Windows.Forms.CheckBox check_chain_3;
         private System.Windows.Forms.CheckBox check_chain_2;
         private System.Windows.Forms.CheckBox check_chain_1;
         private System.Windows.Forms.Button button_delete_chain;
+        private System.Windows.Forms.CheckBox check_non_5;
     }
 }
 

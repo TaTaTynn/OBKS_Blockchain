@@ -15,12 +15,13 @@ namespace OBKS_Blockchain
 {
     public partial class Form1 : Form
     {
-        private string[] paths = new string[5];
-        private CheckBox[] ex_buttons, nods_buttons, chain_buttons;
-        private string initial_dir = @"initial";
-        private string chain_dir = @"chain";
+        private string[] paths = new string[5];     // Имена файлов
+        private CheckBox[] ex_buttons, nons_buttons, chain_buttons; // Массивы эл-тов визуализации
+        private string initial_dir = "initial";     // Имя директории с исходными файлами
+        private string chain_dir = "chain";         // Имя директории с файлами цепочки
         private string[] ru_nums = new string[5] {"первый", "второй", "третий", "четвертый", "пятый"};
-        private int num_zeros;
+        // Строки для заполнения содержания исходных файлов в цикле
+        private int num_zeros; // Количество нулей в начале хеша
 
         // Удалить исходные файлы
         private void button_delete_Click(object sender, EventArgs e)
@@ -43,21 +44,21 @@ namespace OBKS_Blockchain
         // Кнопка ОК
         private void button_ok_Click(object sender, EventArgs e)
         {
-            // Снимаем чекбоксы определения нодсов
-            for (int i = 0; i < nods_buttons.Length; i++)
-                nods_buttons[i].Checked = false;
+            // Снимаем чекбоксы определения нонсов
+            for (int i = 0; i < nons_buttons.Length; i++)
+                nons_buttons[i].Checked = false;
 
             num_zeros = (int)num_nulls.Value;
         }
 
-        // Расчет нодсов файлов
-        private void button_nods_Click(object sender, EventArgs e)
+        // Расчет нонсов файлов
+        private void button_nons_Click(object sender, EventArgs e)
         {
             if (num_zeros == 0)
-                MessageBox.Show("От хэшей не ожидаются нули, нодсы не будут посчитаны!");
+                MessageBox.Show("От хэшей не ожидаются нули, нонсы не будут посчитаны!");
             // Снимаем чекбоксы
-            for (int i=0;i<nods_buttons.Length;i++)
-                nods_buttons[i].Checked = false;
+            for (int i=0;i<nons_buttons.Length;i++)
+                nons_buttons[i].Checked = false;
 
             // Копируем исходные файлы в папку с цепочкой
             for (int i = 0; i < paths.Length; i++)
@@ -73,37 +74,38 @@ namespace OBKS_Blockchain
                 }
             }
 
-            // Считаем нодсы
-            for (int i = 0; i < paths.Length-1; i++)
+            // Считаем нонсы
+            for (int i = 0; i < paths.Length; i++)
             {
                 string path = initial_dir + "\\" + paths[i];
                 FileInfo info = new FileInfo(path);
                 string hash = "";
                 if (info.Exists)
                 {
-                    hash = Compute_nods(paths[i], num_zeros);
+                    hash = Compute_nons(paths[i], num_zeros);
                     if (hash.Length == 0)
                     {
-                        MessageBox.Show("Не удалось вычислить нодс");
+                        MessageBox.Show("Не удалось вычислить нонс");
                         return;
                     }
                 }
+                if (i == paths.Length - 1)
+                { nons_buttons[i].Checked = true; break; }
                 // Пишем хэш текущего файла в конец следующего
                 path = chain_dir + "\\" + paths[i+1];
                 Task cr = new Task(() => File.AppendAllText(path, "\n" + hash, Encoding.Unicode));
                 cr.Start();
                 cr.Wait();
                 info = new FileInfo(path);
-                nods_buttons[i].Checked = info.Exists;
+                nons_buttons[i].Checked = info.Exists;
             }
-            nods_buttons[paths.Length - 1].Checked = true;
         }
 
-        // Расчет нодса для одного файла
-        private string Compute_nods(string path, int num_zeros)
+        // Расчет нонса для одного файла
+        private string Compute_nons(string path, int num_zeros)
         {
-            int nod_i = 0;
-            string nod = "";
+            int non_i = 0;
+            string non = "";
             string ini_path = initial_dir + "\\" + path;
             string cha_path = chain_dir + "\\" + path;
 
@@ -118,18 +120,18 @@ namespace OBKS_Blockchain
                     cr.Start();
                     cr.Wait();
                 }
-                // Пишем нодс в начало файла
+                // Пишем нонс в начало файла
                 info = new FileInfo(cha_path);
                 if (info.Exists)
                 {
-                    nod = nod_i.ToString();
-                    Task cr = new Task(() => File.WriteAllText(cha_path, nod + ini_text));
+                    non = non_i.ToString();
+                    Task cr = new Task(() => File.WriteAllText(cha_path, non + ini_text));
                     cr.Start();
                     cr.Wait();
                 }
-                if (nod_i == int.MaxValue)
+                if (non_i == int.MaxValue)
                     return "";
-                nod_i++;
+                non_i++;
             }
 
             //Возвращаем хэш
@@ -181,10 +183,11 @@ namespace OBKS_Blockchain
                     cr.Wait();
                 }
                 info = new FileInfo(path);
-                nods_buttons[i].Checked = info.Exists;
+                nons_buttons[i].Checked = info.Exists;
             }
         }
 
+        // Проверить целостность цепочки
         private void button_check_chain_Click(object sender, EventArgs e)
         {
             bool result = false;
@@ -198,10 +201,9 @@ namespace OBKS_Blockchain
                     string[] content = File.ReadAllLines(path);
                     result = content[content.Length - 1] == get_hash(path_prev);
                     if (!result)
-                        MessageBox.Show("Нарушена связь файлов\n" + path_prev + "\n и \n" + path);
+                        MessageBox.Show("Нарушена связь файлов\n" + paths[i-1] + "\n и \n" + paths[i]);
                 }
-                info = new FileInfo(path);
-                chain_buttons[i].Checked = result;
+                chain_buttons[i - 1].Checked = result;
             }
         }
 
@@ -212,6 +214,7 @@ namespace OBKS_Blockchain
             for (int i = 0; i < ex_buttons.Length; i++)
                 ex_buttons[i].Checked = false;
 
+            // Создание и заполнение файлов
             for (int i = 0; i < paths.Length; i++)
             {
                 string path = initial_dir + "\\" + paths[i];
@@ -234,19 +237,23 @@ namespace OBKS_Blockchain
         public Form1()
         {
             InitializeComponent();
-            ex_buttons = new CheckBox[5] {this.check_ex_1, this.check_ex_2, this.check_ex_3, this.check_ex_4, this.check_ex_5 };
-            nods_buttons = new CheckBox[5] { check_nod_1, check_nod_2, check_nod_3, check_nod_4, check_nod_5 };
-            chain_buttons = new CheckBox[5] { check_chain_1, check_chain_2, check_chain_3, check_chain_4, check_chain_5 };
+            // Созданы ли исходные файлы
+            ex_buttons = new CheckBox[5] {check_ex_1, check_ex_2, 
+                check_ex_3, check_ex_4, check_ex_5 };
+            // Посчитаны ли нонсы
+            nons_buttons = new CheckBox[5] { check_non_1, check_non_2, 
+                check_non_3, check_non_4, check_non_5 };
+            // Корректна ли цепочка
+            chain_buttons = new CheckBox[4] { check_chain_2,
+                check_chain_3, check_chain_4, check_chain_5 };
 
+            // Существуют ли директории для файлов
             if (!Directory.Exists(initial_dir))
-            {
-                DirectoryInfo ini = Directory.CreateDirectory(initial_dir);
-            }
+                Directory.CreateDirectory(initial_dir);
             if (!Directory.Exists(chain_dir))
-            {
-                DirectoryInfo cha = Directory.CreateDirectory(chain_dir);
-            }
+                Directory.CreateDirectory(chain_dir);
 
+            // Созданы ли исходные файлы
             for (int i = 0; i < paths.Length; i++)
             {
                 paths[i] = (i + 1).ToString() + @".txt";
